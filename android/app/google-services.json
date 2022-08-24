@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "361981046459",
+    "project_id": "get-instant-help",
+    "storage_bucket": "get-instant-help.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361981046459:android:926e7d07e680ffc8df039e",
+        "android_client_info": {
+          "package_name": "io.github.imobasshir.get_instant_help"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "361981046459-v8o2vektihskshs2svpnfqj2tb1i44n7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZbC9W4Hv4iS5Wkm0GrDyiYMw2Jj51Kl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "361981046459-v8o2vektihskshs2svpnfqj2tb1i44n7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
