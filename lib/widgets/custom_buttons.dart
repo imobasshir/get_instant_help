@@ -11,21 +11,28 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return OutlinedButton(
       onPressed: onTap,
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.green),
-        textStyle: MaterialStateProperty.all(
-          const TextStyle(color: Colors.white),
-        ),
-        minimumSize: MaterialStateProperty.all(
-          Size(MediaQuery.of(context).size.width / 2.5, 50),
-        ),
-      ),
       child: Text(
         text,
-        style: const TextStyle(color: Colors.white, fontSize: 16),
+        style: const TextStyle(fontSize: 16),
       ),
     );
+    // return ElevatedButton(
+    //   onPressed: onTap,
+    //   style: ButtonStyle(
+    //     backgroundColor: MaterialStateProperty.all(Colors.green),
+    //     textStyle: MaterialStateProperty.all(
+    //       const TextStyle(color: Colors.white),
+    //     ),
+    //     minimumSize: MaterialStateProperty.all(
+    //       Size(MediaQuery.of(context).size.width / 2.5, 50),
+    //     ),
+    //   ),
+    //   child: Text(
+    //     text,
+    //     style: const TextStyle(color: Colors.white, fontSize: 16),
+    //   ),
+    // );
   }
 }

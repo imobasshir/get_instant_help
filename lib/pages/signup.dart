@@ -1,17 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_instant_help/routes.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
 import 'package:get_instant_help/widgets/custom_buttons.dart';
 import 'package:get_instant_help/widgets/custom_text_field.dart';
 
-class EmailPasswordSignup extends StatefulWidget {
-  const EmailPasswordSignup({Key? key}) : super(key: key);
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
-  State createState() => _EmailPasswordSignupState();
+  State createState() => _SignupScreenState();
 }
 
-class _EmailPasswordSignupState extends State<EmailPasswordSignup> {
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -53,6 +54,13 @@ class _EmailPasswordSignupState extends State<EmailPasswordSignup> {
           CustomButton(
             onTap: signUpUser,
             text: 'Sign Up',
+          ),
+          const SizedBox(height: 40),
+          CustomButton(
+            onTap: () {
+              Navigator.pushNamed(context, MyRoutes.login);
+            },
+            text: 'Log In',
           ),
         ],
       ),

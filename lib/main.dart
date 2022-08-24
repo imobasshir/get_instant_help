@@ -6,10 +6,11 @@ import 'package:get_instant_help/pages/login_screen.dart';
 import 'package:get_instant_help/pages/signup.dart';
 
 void main() async {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +24,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      routes: {
+        "/": (context) => const SignupScreen(),
+        "/home": (context) => const HomeScreen(),
+        "/login": (context) => const LoginScreen(),
+      },
     );
   }
 }

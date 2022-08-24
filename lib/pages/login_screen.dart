@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_instant_help/routes.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
 import 'package:get_instant_help/widgets/custom_buttons.dart';
 import 'package:get_instant_help/widgets/custom_text_field.dart';
@@ -53,6 +54,13 @@ class _LoginScreenState extends State<LoginScreen> {
           CustomButton(
             onTap: loginUsers,
             text: 'Login',
+          ),
+  const SizedBox(height: 40),
+          CustomButton(
+            onTap: () {
+              Navigator.pushNamed(context, MyRoutes.signup);
+            },
+            text: 'Sign Up',
           ),
         ],
       ),
