@@ -29,6 +29,13 @@
             {
               "client_id": "361981046459-v8o2vektihskshs2svpnfqj2tb1i44n7.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "361981046459-30ckuuqb6mmskk2h9vdpb7jn1qdc8n4k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.github.imobasshir.getInstantHelp"
+              }
             }
           ]
         }

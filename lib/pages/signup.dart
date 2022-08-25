@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get_instant_help/routes.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
 import 'package:get_instant_help/widgets/custom_buttons.dart';
@@ -32,7 +33,10 @@ class _SignupScreenState extends State<SignupScreen> {
         children: [
           const Text(
             "Sign Up",
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(
+              fontSize: 30,
+              color: Colors.lightBlue,
+            ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.08),
           Container(
@@ -40,6 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
             child: CustomTextField(
               controller: emailController,
               hintText: 'Enter your email',
+              ans: false,
             ),
           ),
           const SizedBox(height: 20),
@@ -48,6 +53,7 @@ class _SignupScreenState extends State<SignupScreen> {
             child: CustomTextField(
               controller: passwordController,
               hintText: 'Enter your password',
+              ans: true,
             ),
           ),
           const SizedBox(height: 40),
@@ -61,6 +67,18 @@ class _SignupScreenState extends State<SignupScreen> {
               Navigator.pushNamed(context, MyRoutes.login);
             },
             text: 'Log In',
+          ),
+          const SizedBox(height: 16),
+          const Divider(),
+          const SizedBox(height: 8),
+          SignInButton(
+            Buttons.Google,
+            text: "Sign up with Google",
+            onPressed: () {
+              FirebaseAuthMethods(FirebaseAuth.instance)
+                  .signInWithGoogle(context);
+            },
+            elevation: 1.0,
           ),
         ],
       ),

@@ -1,13 +1,17 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
+  final bool ans;
 
   const CustomTextField({
     Key? key,
     required this.controller,
     required this.hintText,
+    required this.ans,
   }) : super(key: key);
 
   @override
@@ -34,6 +38,7 @@ class CustomTextField extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
+        obscureText: ans,
       ),
     );
   }
