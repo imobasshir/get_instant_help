@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final user = context.read<FirebaseAuthMethods>().user;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Get Instant Help'),
@@ -26,6 +27,16 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              if (user.isAnonymous)
+                const Text(
+                  'Anonymous User',
+                  style: TextStyle(fontSize: 32),
+                ),
+              if (!user.isAnonymous)
+                Text(
+                  user.email!.split('@')[0],
+                  style: const TextStyle(fontSize: 32),
+                ),
               CustomButton(
                 onTap: () {
                   context.read<FirebaseAuthMethods>().signOut(context);

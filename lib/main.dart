@@ -6,6 +6,7 @@ import 'package:get_instant_help/pages/home_page.dart';
 import 'package:get_instant_help/pages/login_screen.dart';
 import 'package:get_instant_help/pages/signup.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.lightBlue,
           useMaterial3: true,
+          fontFamily: GoogleFonts.lato().fontFamily,
         ),
         debugShowCheckedModeBanner: false,
         routes: {
