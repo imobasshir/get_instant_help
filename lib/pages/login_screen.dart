@@ -4,6 +4,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get_instant_help/routes.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
 import 'package:get_instant_help/widgets/custom_buttons.dart';
+import 'package:get_instant_help/widgets/custom_password_field.dart';
 import 'package:get_instant_help/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
 
@@ -45,16 +46,14 @@ class _LoginScreenState extends State<LoginScreen> {
             child: CustomTextField(
               controller: emailController,
               hintText: 'Enter your email',
-              ans: false,
             ),
           ),
           const SizedBox(height: 20),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: CustomTextField(
+            child: CustomPassField(
               controller: passwordController,
               hintText: 'Enter your password',
-              ans: true,
             ),
           ),
           const SizedBox(height: 40),
@@ -62,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
             onTap: loginUsers,
             text: 'Login',
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           CustomButton(
             onTap: () {
               Navigator.pushNamed(context, MyRoutes.signup);
