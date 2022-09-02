@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_instant_help/routes.dart';
 import 'package:get_instant_help/widgets/snackbar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -50,7 +51,7 @@ class FirebaseAuthMethods {
         await sendEmailVerification(context);
         showSnackBar(context, 'Email verification sent');
       }
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamed(context, MyRoutes.home);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         showSnackBar(context, 'User not found');
@@ -76,7 +77,7 @@ class FirebaseAuthMethods {
   Future<void> signOut(BuildContext context) async {
     try {
       await _auth.signOut();
-      Navigator.pop(context);
+      Navigator.pushNamed(context, MyRoutes.auth);
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!); // Displaying the error message
     }
@@ -97,7 +98,7 @@ class FirebaseAuthMethods {
         UserCredential userCredential =
             await _auth.signInWithCredential(credential);
 
-        Navigator.pushNamed(context, '/home');
+        Navigator.pushNamed(context, MyRoutes.home);
         // if you want to do specific task like storing information in firestore
         // only for new users using google sign in (since there are no two options
         // for google sign in and google sign up, only one as of now),
@@ -116,7 +117,7 @@ class FirebaseAuthMethods {
   Future<void> signInAnonymously(BuildContext context) async {
     try {
       await _auth.signInAnonymously();
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamed(context, MyRoutes.home);
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
@@ -126,7 +127,7 @@ class FirebaseAuthMethods {
   Future<void> deleteAccount(BuildContext context) async {
     try {
       await _auth.currentUser!.delete();
-      Navigator.pop(context);
+      Navigator.pushNamed(context, MyRoutes.auth);
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!); // Displaying the error message
       // if an error of requires-recent-login is thrown, make sure to log

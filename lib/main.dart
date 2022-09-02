@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-       providers: [
+      providers: [
         Provider<FirebaseAuthMethods>(
           create: (_) => FirebaseAuthMethods(FirebaseAuth.instance),
         ),
@@ -37,12 +37,28 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.lightBlue,
           useMaterial3: true,
         ),
+        debugShowCheckedModeBanner: false,
         routes: {
-          "/": (context) => const SignupScreen(),
+          "/": (context) => const AuthWrapper(),
+          "/signup": (context) => const SignupScreen(),
           "/home": (context) => const HomeScreen(),
           "/login": (context) => const LoginScreen(),
         },
       ),
     );
+  }
+}
+
+class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final userAcc = Provider.of<User?>(context);
+
+    if (userAcc != null) {
+      return const HomeScreen();
+    }
+    return const LoginScreen();
   }
 }
