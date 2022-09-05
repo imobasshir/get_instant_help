@@ -1,12 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_instant_help/main.dart';
 import 'package:get_instant_help/pages/home/home.dart';
 import 'package:get_instant_help/widgets/snackbar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:get_instant_help/models/user_model.dart' as model;
 
 class FirebaseAuthMethods {
   final FirebaseAuth _auth;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   FirebaseAuthMethods(
     this._auth,
   );
@@ -21,10 +24,17 @@ class FirebaseAuthMethods {
     required BuildContext context,
   }) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      UserCredential credential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      model.User user = model.User(
+        uid: credential.user!.uid,
+        email: credential.user!.email!,
+        type: 'user',
+        name: '',
+      );
+      _firestore.collection('users').doc(credential.user!.uid).set(user.toJson());
       await sendEmailVerification(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -44,7 +54,7 @@ class FirebaseAuthMethods {
     required BuildContext context,
   }) async {
     try {
-      await _auth.signInWithEmailAndPassword(
+      UserCredential credential = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -52,6 +62,13 @@ class FirebaseAuthMethods {
         await sendEmailVerification(context);
         showSnackBar(context, 'Email verification sent');
       }
+      model.User us = model.User(
+        uid: credential.user!.uid,
+        email: credential.user!.email!,
+        type: 'user',
+        name: '',
+      );
+      _firestore.collection('users').doc(credential.user!.uid).set(us.toJson());
       // Navigator.pushNamed(context, MyRoutes.home);
       Navigator.push(
         context,
@@ -112,6 +129,16 @@ class FirebaseAuthMethods {
         UserCredential userCredential =
             await _auth.signInWithCredential(credential);
 
+        model.User user = model.User(
+          uid: userCredential.user!.uid,
+          email: userCredential.user!.email!,
+          type: 'user',
+          name: userCredential.user!.displayName!,
+        );
+
+        _firestore.collection('users').doc(userCredential.user!.uid).set(
+              user.toJson(),
+            );
         // Navigator.pushNamed(context, MyRoutes.home);
         Navigator.push(
           context,
@@ -138,7 +165,14 @@ class FirebaseAuthMethods {
   // Anonimous Signin
   Future<void> signInAnonymously(BuildContext context) async {
     try {
-      await _auth.signInAnonymously();
+      UserCredential credential = await _auth.signInAnonymously();
+      model.User user = model.User(
+        uid: credential.user!.uid,
+        email: '',
+        type: 'user',
+        name: '',
+      );
+      _firestore.collection('users').doc(credential.user!.uid).set(user.toJson());
       // Navigator.pushNamed(context, MyRoutes.home);
       Navigator.push(
         context,
