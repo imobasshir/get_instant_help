@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_instant_help/firebase_options.dart';
-import 'package:get_instant_help/pages/home_page.dart';
+import 'package:get_instant_help/pages/home/home.dart';
 import 'package:get_instant_help/pages/login_screen.dart';
-import 'package:get_instant_help/pages/signup.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +35,7 @@ class MyApp extends StatelessWidget {
         title: 'Get Instant Help',
         theme: ThemeData(
           primarySwatch: Colors.lightBlue,
+          backgroundColor: Colors.white,
           useMaterial3: true,
           fontFamily: GoogleFonts.lato().fontFamily,
         ),
@@ -54,7 +54,7 @@ class AuthWrapper extends StatelessWidget {
     final userAcc = Provider.of<User?>(context);
 
     if (userAcc != null) {
-      return const HomeScreen();
+      return const Home();
     }
     return const LoginScreen();
   }

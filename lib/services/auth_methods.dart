@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_instant_help/main.dart';
-import 'package:get_instant_help/pages/home_page.dart';
+import 'package:get_instant_help/pages/home/home.dart';
 import 'package:get_instant_help/widgets/snackbar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -54,13 +54,13 @@ class FirebaseAuthMethods {
       }
       // Navigator.pushNamed(context, MyRoutes.home);
       Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return const HomeScreen();
-            },
-          ),
-        );
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const Home();
+          },
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         showSnackBar(context, 'User not found');
@@ -117,7 +117,7 @@ class FirebaseAuthMethods {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return const HomeScreen();
+              return const Home();
             },
           ),
         );
@@ -141,13 +141,13 @@ class FirebaseAuthMethods {
       await _auth.signInAnonymously();
       // Navigator.pushNamed(context, MyRoutes.home);
       Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return const HomeScreen();
-            },
-          ),
-        );
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const Home();
+          },
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
@@ -159,13 +159,13 @@ class FirebaseAuthMethods {
       await _auth.currentUser!.delete();
       // Navigator.pushNamed(context, MyRoutes.auth);
       Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return const AuthWrapper();
-            },
-          ),
-        );
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const AuthWrapper();
+          },
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!); // Displaying the error message
       // if an error of requires-recent-login is thrown, make sure to log
