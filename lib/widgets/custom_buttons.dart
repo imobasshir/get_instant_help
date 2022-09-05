@@ -11,21 +11,26 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onTap,
-      style: TextButton.styleFrom(
-        backgroundColor: Colors.lightBlue,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 20,
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 54),
-      ),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 14,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          color: Colors.lightBlue,
+        ),
+        height: 40,
+        width: MediaQuery.of(context).size.width / 1.62,
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+          ),
         ),
       ),
     );

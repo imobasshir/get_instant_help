@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:get_instant_help/routes.dart';
+import 'package:get_instant_help/pages/signup.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
 import 'package:get_instant_help/widgets/custom_buttons.dart';
 import 'package:get_instant_help/widgets/custom_password_field.dart';
@@ -61,16 +61,41 @@ class _LoginScreenState extends State<LoginScreen> {
             onTap: loginUsers,
             text: 'Login',
           ),
-          const SizedBox(height: 20),
-          CustomButton(
-            onTap: () {
-              Navigator.pushNamed(context, MyRoutes.signup);
-            },
-            text: 'Sign Up',
-          ),
-          const SizedBox(height: 16),
-          const Divider(),
           const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Don't have an account?",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black54,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SignupScreen();
+                      },
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Sign Up",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.lightBlue,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          const Divider(),
+          const SizedBox(height: 4),
           SignInButton(
             Buttons.Google,
             text: "Login with Google",

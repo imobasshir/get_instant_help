@@ -40,12 +40,7 @@ class MyApp extends StatelessWidget {
           fontFamily: GoogleFonts.lato().fontFamily,
         ),
         debugShowCheckedModeBanner: false,
-        routes: {
-          "/": (context) => const AuthWrapper(),
-          "/signup": (context) => const SignupScreen(),
-          "/home": (context) => const HomeScreen(),
-          "/login": (context) => const LoginScreen(),
-        },
+        home: const AuthWrapper(),
       ),
     );
   }
