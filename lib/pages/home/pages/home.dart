@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_instant_help/pages/home/pages/guide.dart';
 import 'package:get_instant_help/widgets/buttons.dart';
 
 class HomeFirstPage extends StatefulWidget {

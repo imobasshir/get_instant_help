@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:get_instant_help/pages/doctor_login.dart';
 import 'package:get_instant_help/pages/login_screen.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
 import 'package:get_instant_help/widgets/custom_buttons.dart';
@@ -91,6 +92,38 @@ class _SignupScreenState extends State<SignupScreen> {
                 },
                 child: const Text(
                   "Login",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.lightBlue,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Sign up as doctor",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black54,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const DoctorLoginSignUp();
+                      },
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Doctor Sign Up",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.lightBlue,

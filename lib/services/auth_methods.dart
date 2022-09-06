@@ -6,6 +6,7 @@ import 'package:get_instant_help/pages/home/home.dart';
 import 'package:get_instant_help/widgets/snackbar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get_instant_help/models/user_model.dart' as model;
+import 'package:get_instant_help/models/doctor_model.dart' as modeldoctor;
 
 class FirebaseAuthMethods {
   final FirebaseAuth _auth;
@@ -47,6 +48,36 @@ class FirebaseAuthMethods {
     }
   }
 
+  // Email SignUp
+  Future<void> signUpDoctor({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
+    try {
+      UserCredential credential = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      modeldoctor.Doctor doctor = modeldoctor.Doctor(
+        uid: credential.user!.uid,
+        email: credential.user!.email!,
+        type: 'doctor',
+        name: '',
+      );
+      _firestore.collection('users').doc(credential.user!.uid).set(doctor.toJson());
+      await sendEmailVerification(context);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        showSnackBar(context, 'Password is too weak');
+      } else if (e.code == 'email-already-in-use') {
+        showSnackBar(context, 'Email is already in use');
+      } else {
+        showSnackBar(context, e.message!);
+      }
+    }
+  }
+
   // Email Login
   Future<void> loginWithEmail({
     required String email,
@@ -54,7 +85,8 @@ class FirebaseAuthMethods {
     required BuildContext context,
   }) async {
     try {
-      UserCredential credential = await _auth.signInWithEmailAndPassword(
+      // UserCredential credential = 
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -62,13 +94,13 @@ class FirebaseAuthMethods {
         await sendEmailVerification(context);
         showSnackBar(context, 'Email verification sent');
       }
-      model.User us = model.User(
-        uid: credential.user!.uid,
-        email: credential.user!.email!,
-        type: 'user',
-        name: '',
-      );
-      _firestore.collection('users').doc(credential.user!.uid).set(us.toJson());
+      // model.User us = model.User(
+      //   uid: credential.user!.uid,
+      //   email: credential.user!.email!,
+      //   type: 'user',
+      //   name: '',
+      // );
+      // _firestore.collection('users').doc(credential.user!.uid).set(us.toJson());
       // Navigator.pushNamed(context, MyRoutes.home);
       Navigator.push(
         context,
@@ -138,6 +170,54 @@ class FirebaseAuthMethods {
 
         _firestore.collection('users').doc(userCredential.user!.uid).set(
               user.toJson(),
+            );
+        // Navigator.pushNamed(context, MyRoutes.home);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const Home();
+            },
+          ),
+        );
+        // if you want to do specific task like storing information in firestore
+        // only for new users using google sign in (since there are no two options
+        // for google sign in and google sign up, only one as of now),
+        // do the following:
+
+        // if (userCredential.user != null) {
+        //   if (userCredential.additionalUserInfo!.isNewUser) {}
+        // }
+      }
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!); // Displaying the error message
+    }
+  }
+
+  // Google SignIn Doctor
+  Future<void> doctorGoogle(BuildContext context) async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+      if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
+        // Create a new credential
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
+        UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
+
+        modeldoctor.Doctor doctor = modeldoctor.Doctor(
+          uid: userCredential.user!.uid,
+          email: userCredential.user!.email!,
+          type: 'doctor',
+          name: userCredential.user!.displayName!,
+        );
+
+        _firestore.collection('users').doc(userCredential.user!.uid).set(
+              doctor.toJson(),
             );
         // Navigator.pushNamed(context, MyRoutes.home);
         Navigator.push(

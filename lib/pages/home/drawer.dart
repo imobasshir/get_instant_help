@@ -36,14 +36,33 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
               subtitle: !user.isAnonymous
-                  ? Text(
-                      user.email!.split('@')[0],
-                      style: const TextStyle(
-                          fontFamily: 'GoogleSans', fontSize: 16),
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        user.displayName == null
+                            ? Text(
+                                user.email!.split('@')[0],
+                                style: const TextStyle(
+                                  fontFamily: 'GoogleSans',
+                                  fontSize: 16,
+                                ),
+                              )
+                            : Text(
+                                user.displayName!,
+                                style: const TextStyle(
+                                  fontFamily: 'GoogleSans',
+                                  fontSize: 16,
+                                ),
+                              ),
+                      ],
                     )
                   : const Text(
                       'Anonymous User',
-                      style: TextStyle(fontFamily: 'GoogleSans', fontSize: 16),
+                      style: TextStyle(
+                        fontFamily: 'GoogleSans',
+                        fontSize: 16,
+                      ),
                     ),
               onTap: () {},
             ),
