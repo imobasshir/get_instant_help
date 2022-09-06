@@ -12,22 +12,26 @@ class _HomeFirstPageState extends State<HomeFirstPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Button(
-            onTap: () {},
-            text: 'Call Ambulance',
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
-          ),
-          Button(
-            onTap: () {},
-            text: 'Instant Help',
-          ),
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.2,
+          vertical: MediaQuery.of(context).size.height * 0.05,
+        ),
+        child: ListView(
+          children: [
+            Button(
+              onTap: () {},
+              text: 'Call Ambulance',
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.1,
+            ),
+            Button(
+              onTap: () {},
+              text: 'Instant Help',
+            ),
+          ],
+        ),
       ),
     );
   }
