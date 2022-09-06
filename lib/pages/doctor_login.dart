@@ -38,6 +38,12 @@ class _DoctorLoginSignUpState extends State<DoctorLoginSignUp> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
           const Text(
             "Doctor Sign Up",
             style: TextStyle(
@@ -73,8 +79,7 @@ class _DoctorLoginSignUpState extends State<DoctorLoginSignUp> {
             Buttons.Google,
             text: "Sign up with Google",
             onPressed: () {
-              FirebaseAuthMethods(FirebaseAuth.instance)
-                  .doctorGoogle(context);
+              FirebaseAuthMethods(FirebaseAuth.instance).doctorGoogle(context);
             },
             elevation: 1.0,
           ),

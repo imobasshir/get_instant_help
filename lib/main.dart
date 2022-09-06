@@ -52,9 +52,6 @@ class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userAcc = Provider.of<User?>(context);
-    if (userAcc == null) {
-      return const LoginScreen();
-    } 
-    return const Home();
+    return userAcc != null ? const Home() : const LoginScreen();
   }
 }
