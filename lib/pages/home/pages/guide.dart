@@ -13,56 +13,60 @@ class _GuideState extends State<Guide> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const Center(
-          child: Text(
-            'Medical Guide',
-            style: TextStyle(
-              fontSize: 40,
-              color: Colors.black54,
+        Column(
+          children: [
+            const SizedBox(height: 20),
+            const Text(
+              'Medical Guide',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w400,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
+            const SizedBox(height: 20),
+            BigButton(
+              link: Uri.parse('https://youtu.be/gDwt7dD3awc'),
+              image:
+                  'assets/heart1.jpg',
+              title: 'Heart Attack',
+              text: 'In case of heart sttack symptoms what we can do!',
+            ),
+            const SizedBox(height: 20),
+            BigButton(
+              link: Uri.parse('https://youtu.be/-NodDRTsV88'),
+              image:
+                  'assets/cpr.png',
+              title: 'CPR',
+              text: 'How to perform CPR',
+            ),
+            const SizedBox(height: 20),
+            BigButton(
+              link: Uri.parse('https://youtu.be/NxO5LvgqZe0'),
+              image:
+                  'assets/doctor.jpg',
+              title: 'Bleeding Wound',
+              text: 'How to treat bleeding wound',
+            ),
+            const SizedBox(height: 20),
+            BigButton(
+              link: Uri.parse('https://youtu.be/EaJmzB8YgS0'),
+              image:
+                  'assets/cross.jpg',
+              title: 'Burn Emergency',
+              text: 'How to treat burn emergency',
+            ),
+            const SizedBox(height: 20),
+            BigButton(
+              link: Uri.parse('https://youtu.be/U0yDJ0udMkg'),
+              image:
+                  'assets/cross.jpg',
+              title: 'Carry Someone Heavier',
+              text: 'How to carry someone heavier',
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
-        const SizedBox(height: 10),
-        BigButton(
-          title: 'CPR',
-          text: 'Perform CPR',
-          image:
-              'https://github.com/nitashadhingra/MediStat/blob/main/assets/images/a1.jpg?raw=true',
-          link: Uri.parse('https://youtu.be/-NodDRTsV88'),
-        ),
-        const SizedBox(height: 10),
-        BigButton(
-          title: 'Heart Attack',
-          text: 'Heart Attack Emergency',
-          image:
-              'https://github.com/nitashadhingra/MediStat/blob/main/assets/images/a1.jpg?raw=true',
-          link: Uri.parse('https://youtu.be/gDwt7dD3awc'),
-        ),
-        const SizedBox(height: 10),
-        BigButton(
-          title: 'Bleeding Wound',
-          text: 'How to Treat a Bleeding',
-          image:
-              'https://github.com/nitashadhingra/MediStat/blob/main/assets/images/a1.jpg?raw=true',
-          link: Uri.parse('https://youtu.be/NxO5LvgqZe0'),
-        ),
-        const SizedBox(height: 10),
-        BigButton(
-          title: 'Burn Emergency',
-          text: 'How to Treat a Burn',
-          image:
-              'https://github.com/nitashadhingra/MediStat/blob/main/assets/images/a1.jpg?raw=true',
-          link: Uri.parse('https://youtu.be/EaJmzB8YgS0'),
-        ),
-        const SizedBox(height: 10),
-        BigButton(
-          title: 'Carry Someone Heavier',
-          text: 'Move someone to hospital',
-          image:
-              'https://github.com/nitashadhingra/MediStat/blob/main/assets/images/a1.jpg?raw=true',
-          link: Uri.parse('https://youtu.be/U0yDJ0udMkg'),
-        ),
-        const SizedBox(height: 10),
       ],
     );
   }

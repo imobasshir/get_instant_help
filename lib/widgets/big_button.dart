@@ -21,52 +21,49 @@ class BigButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      child: Container(
+        height: 240,
+        width: 240,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            image: AssetImage(image),
+            fit: BoxFit.cover,
+            opacity: 0.5,
+          ),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            Text(
+              text,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 28),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
       onTap: () {
         launchUrl(
           link,
           mode: LaunchMode.inAppWebView,
+          webViewConfiguration: const WebViewConfiguration(
+            enableJavaScript: true,
+          ),
         );
       },
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.black54,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  text,
-                  style: const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-              Image.network(
-                image,
-                fit: BoxFit.cover,
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
