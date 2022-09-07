@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_instant_help/pages/home/instant_help.dart';
 import 'package:get_instant_help/widgets/buttons.dart';
 
 class HomeFirstPage extends StatefulWidget {
@@ -27,7 +28,16 @@ class _HomeFirstPageState extends State<HomeFirstPage> {
               height: MediaQuery.of(context).size.height * 0.1,
             ),
             Button(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const InstantHelp();
+                    },
+                  ),
+                );
+              },
               text: 'Instant Help',
             ),
           ],

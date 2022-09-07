@@ -58,7 +58,7 @@ class BigButton extends StatelessWidget {
       onTap: () {
         launchUrl(
           link,
-          mode: LaunchMode.inAppWebView,
+          mode: LaunchMode.externalApplication,
           webViewConfiguration: const WebViewConfiguration(
             enableJavaScript: true,
           ),

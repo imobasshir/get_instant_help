@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_instant_help/pages/terms/terms_page.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
@@ -9,6 +10,9 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.read<FirebaseAuthMethods>().user;
+    final Stream<QuerySnapshot> usersStream =
+        FirebaseFirestore.instance.collection('users').snapshots();
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -55,14 +59,60 @@ class MyDrawer extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                               ),
+                        StreamBuilder<QuerySnapshot>(
+                          stream: usersStream,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            return Text(
+                              snapshot.hasData
+                                  ? snapshot.data!.docs
+                                      .where((doc) => doc.id == user.uid)
+                                      .first
+                                      .get('type')
+                                      .toString()
+                                      .toUpperCase()
+                                  : 'Loading...',
+                              style: const TextStyle(
+                                fontFamily: 'GoogleSans',
+                                fontSize: 16,
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     )
-                  : const Text(
-                      'Anonymous User',
-                      style: TextStyle(
-                        fontFamily: 'GoogleSans',
-                        fontSize: 16,
-                      ),
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Anonymous User',
+                          style: TextStyle(
+                            fontFamily: 'GoogleSans',
+                            fontSize: 16,
+                          ),
+                        ),
+                        StreamBuilder<QuerySnapshot>(
+                          stream: usersStream,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            return Text(
+                              snapshot.hasData
+                                  ? snapshot.data!.docs
+                                      .where((doc) => doc.id == user.uid)
+                                      .first
+                                      .get('type')
+                                      .toString()
+                                      .toUpperCase()
+                                  : 'Loading...',
+                              style: const TextStyle(
+                                fontFamily: 'GoogleSans',
+                                fontSize: 16,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
               onTap: () {},
             ),
