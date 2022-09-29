@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_instant_help/pages/home/instant_help.dart';
 import 'package:get_instant_help/widgets/buttons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeFirstPage extends StatefulWidget {
   const HomeFirstPage({super.key});
@@ -12,6 +13,7 @@ class HomeFirstPage extends StatefulWidget {
 class _HomeFirstPageState extends State<HomeFirstPage> {
   @override
   Widget build(BuildContext context) {
+    const no = '102';
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -21,7 +23,14 @@ class _HomeFirstPageState extends State<HomeFirstPage> {
         child: ListView(
           children: [
             Button(
-              onTap: () {},
+              onTap: () async {
+                launchUrl(
+                  Uri(
+                    scheme: 'tel',
+                    path: no,
+                  ),
+                );
+              },
               text: 'Call Ambulance',
             ),
             SizedBox(
