@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final _bodyItem = [
     const HomeFirstPage(),
-    const Doctor(),
+    Doctor(),
     const Guide(),
     const NearMe(),
   ];
