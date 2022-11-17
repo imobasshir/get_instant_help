@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.imobasshir.get_instant_help">
+    package="io.github.imobasshir.get_instant_help"
+    xmlns:tools="http://schemas.android.com/tools">
    <application
+        tools:replace="android:label"  
         android:label="get_instant_help"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

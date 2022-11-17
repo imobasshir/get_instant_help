@@ -48,7 +48,7 @@ class _DoctorLoginSignUpState extends State<DoctorLoginSignUp> {
             "Doctor Sign Up",
             style: TextStyle(
               fontSize: 30,
-              color: Colors.lightBlue,
+              color: Colors.lightGreen,
             ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.08),

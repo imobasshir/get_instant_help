@@ -44,7 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
             "Sign Up",
             style: TextStyle(
               fontSize: 30,
-              color: Colors.lightBlue,
+              color: Colors.lightGreen,
             ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.08),
@@ -94,7 +94,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   "Login",
                   style: TextStyle(
                     fontSize: 15,
-                    color: Colors.lightBlue,
+                    color: Colors.lightGreen,
                   ),
                 ),
               ),
@@ -126,7 +126,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   "Doctor Sign Up",
                   style: TextStyle(
                     fontSize: 15,
-                    color: Colors.lightBlue,
+                    color: Colors.lightGreen,
                   ),
                 ),
               ),

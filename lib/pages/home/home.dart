@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
             ),
             selectedIcon: Icon(
               Icons.home,
-              color: Colors.black87,
+              color: Colors.white,
             ),
           ),
           NavigationDestination(
@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
             ),
             selectedIcon: Icon(
               Icons.video_call_sharp,
-              color: Colors.black87,
+              color: Colors.white,
             ),
           ),
           NavigationDestination(
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
             ),
             selectedIcon: Icon(
               Icons.medical_information,
-              color: Colors.black87,
+              color: Colors.white,
             ),
           ),
           NavigationDestination(
@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
             ),
             selectedIcon: Icon(
               Icons.local_hospital_rounded,
-              color: Colors.black87,
+              color: Colors.white,
             ),
           ),
         ],

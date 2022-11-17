@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Get Instant Help',
         theme: ThemeData(
-          primarySwatch: Colors.lightBlue,
+          primarySwatch: Colors.lightGreen,
           backgroundColor: Colors.white,
           useMaterial3: true,
           fontFamily: GoogleFonts.lato().fontFamily,
