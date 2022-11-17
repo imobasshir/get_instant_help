@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get_instant_help/pages/terms/contact_page.dart';
 import 'package:get_instant_help/pages/terms/terms_page.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
 import 'package:provider/provider.dart';
@@ -139,9 +140,9 @@ class MyDrawer extends StatelessWidget {
             ),
             trailing: const Icon(Icons.arrow_right),
             onTap: () {
-              // Navigator.of(context).pop();
-              // Navigator.of(context).push(new MaterialPageRoute(
-              //     builder: (BuildContext context) => Contact()));
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => const ContactPage()));
             },
           ),
           ListTile(

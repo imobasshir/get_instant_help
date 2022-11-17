@@ -70,9 +70,16 @@ class _DoctorState extends State<Doctor> {
                 text: 'Join Call',
               ),
               VCButton(
-                icon: Icons.calendar_today_sharp,
-                onPressed: () {},
-                text: 'Shedule',
+                icon: Icons.history_sharp,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HistoryMeetingScreen(),
+                    ),
+                  );
+                },
+                text: 'text',
               ),
               VCButton(
                 icon: Icons.chat_sharp,
@@ -81,19 +88,6 @@ class _DoctorState extends State<Doctor> {
               ),
             ],
           ),
-          const SizedBox(height: 20),
-          VCButton(
-            icon: Icons.history_sharp,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HistoryMeetingScreen(),
-                ),
-              );
-            },
-            text: 'text',
-            ),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_instant_help/pages/home/instant_help.dart';
+import 'package:get_instant_help/pages/home/pages/instant_help.dart';
 import 'package:get_instant_help/widgets/buttons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,7 +43,7 @@ class _HomeFirstPageState extends State<HomeFirstPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return const InstantHelp();
+                      return const InstantHelpScreen();
                     },
                   ),
                 );
