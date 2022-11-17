@@ -40,7 +40,20 @@ class MyApp extends StatelessWidget {
           fontFamily: GoogleFonts.lato().fontFamily,
         ),
         debugShowCheckedModeBanner: false,
-        home: const AuthWrapper(),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasData) {
+              return const Home();
+            } else {
+              return const LoginScreen();
+            }
+          },
+        ),
       ),
     );
   }
