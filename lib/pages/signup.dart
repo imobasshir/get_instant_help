@@ -1,12 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get_instant_help/pages/doctor_login.dart';
 import 'package:get_instant_help/pages/login_screen.dart';
 import 'package:get_instant_help/services/auth_methods.dart';
 import 'package:get_instant_help/widgets/custom_buttons.dart';
-import 'package:get_instant_help/widgets/custom_password_field.dart';
-import 'package:get_instant_help/widgets/custom_text_field.dart';
+import 'package:get_instant_help/widgets/my_textfield.dart';
+import 'package:get_instant_help/widgets/square_tile.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -37,114 +36,163 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            "Sign Up",
-            style: TextStyle(
-              fontSize: 30,
-              color: Colors.lightGreen,
-            ),
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.08),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: CustomTextField(
-              controller: emailController,
-              hintText: 'Enter your email',
-            ),
-          ),
-          const SizedBox(height: 20),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: CustomPassField(
-              controller: passwordController,
-              hintText: 'Enter your password',
-            ),
-          ),
-          const SizedBox(height: 40),
-          CustomButton(
-            onTap: signUpUser,
-            text: 'Sign Up',
-          ),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Already have an account?",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black54,
+      backgroundColor: Colors.grey[300],
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 30),
+                const Icon(
+                  Icons.lock,
+                  size: 60,
+                  color: Colors.lightGreen,
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const LoginScreen();
-                      },
-                    ),
-                  );
-                },
-                child: const Text(
-                  "Login",
+                const SizedBox(height: 10),
+                const Text(
+                  'Sign Up',
                   style: TextStyle(
-                    fontSize: 15,
                     color: Colors.lightGreen,
+                    fontSize: 32,
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Sign up as doctor",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black54,
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: emailController,
+                  hintText: 'Email',
+                  obscureText: false,
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const DoctorLoginSignUp();
-                      },
-                    ),
-                  );
-                },
-                child: const Text(
-                  "Doctor Sign Up",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.lightGreen,
+                const SizedBox(height: 10),
+                MyTextField(
+                  controller: passwordController,
+                  hintText: 'Password',
+                  obscureText: true,
+                ),
+                // const SizedBox(height: 10),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.end,
+                //     children: [
+                //       Text(
+                //         'Forgot Password?',
+                //         style: TextStyle(color: Colors.grey[600]),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                const SizedBox(height: 20),
+                CustomButton(
+                  onTap: signUpUser,
+                  text: 'Sign Up',
+                ),
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'Or continue with',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SquareTile(
+                      onTap: () {
+                        FirebaseAuthMethods(FirebaseAuth.instance)
+                            .signInWithGoogle(context);
+                      },
+                      imagePath: 'assets/google.png',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Already a member?',
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                    const SizedBox(width: 4),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const LoginScreen();
+                            },
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.lightGreen,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                // const SizedBox(height: 4),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Sign up as doctor",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black54,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const DoctorLoginSignUp();
+                            },
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Doctor Sign Up",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.lightGreen,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 4),
-          const Divider(),
-          const SizedBox(height: 4),
-          SignInButton(
-            Buttons.Google,
-            text: "Sign up with Google",
-            onPressed: () {
-              FirebaseAuthMethods(FirebaseAuth.instance)
-                  .signInWithGoogle(context);
-            },
-            elevation: 1.0,
-          ),
-        ],
+        ),
       ),
     );
   }
