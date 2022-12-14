@@ -36,7 +36,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -47,13 +47,12 @@ class _SignupScreenState extends State<SignupScreen> {
                 const Icon(
                   Icons.lock,
                   size: 60,
-                  color: Colors.lightGreen,
                 ),
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   'Sign Up',
                   style: TextStyle(
-                    color: Colors.lightGreen,
+                    color: Colors.grey[700],
                     fontSize: 32,
                   ),
                 ),
@@ -151,7 +150,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         "Login",
                         style: TextStyle(
                           fontSize: 15,
-                          color: Colors.lightGreen,
+                          color: Colors.lightBlue,
                         ),
                       ),
                     ),
@@ -183,7 +182,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         "Doctor Sign Up",
                         style: TextStyle(
                           fontSize: 15,
-                          color: Colors.lightGreen,
+                          color: Colors.lightBlue,
                         ),
                       ),
                     ),

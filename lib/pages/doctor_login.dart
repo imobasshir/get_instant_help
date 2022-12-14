@@ -34,7 +34,7 @@ class _DoctorLoginSignUpState extends State<DoctorLoginSignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -51,10 +51,10 @@ class _DoctorLoginSignUpState extends State<DoctorLoginSignUp> {
                   color: Colors.grey[700],
                 ),
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   'Doctor Sign Up',
                   style: TextStyle(
-                    color: Colors.lightGreen,
+                    color: Colors.grey[700],
                     fontSize: 32,
                   ),
                 ),

@@ -19,7 +19,7 @@ class VCButton extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.lightGreen,
+              color: Colors.lightBlue,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(

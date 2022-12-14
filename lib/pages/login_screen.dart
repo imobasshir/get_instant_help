@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -47,13 +47,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 const Icon(
                   Icons.lock,
                   size: 60,
-                  color: Colors.lightGreen,
                 ),
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   'Log In',
                   style: TextStyle(
-                    color: Colors.lightGreen,
+                    color: Colors.grey[700],
                     fontSize: 32,
                   ),
                 ),
@@ -163,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         "Sign Up",
                         style: TextStyle(
                           fontSize: 15,
-                          color: Colors.lightGreen,
+                          color: Colors.lightBlue,
                         ),
                       ),
                     ),

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
@@ -19,7 +17,7 @@ class Button extends StatelessWidget {
         height: 210,
         width: 210,
         decoration: BoxDecoration(
-          color: Colors.lightGreen,
+          color: Colors.lightBlue,
           borderRadius: BorderRadius.circular(105),
         ),
         child: Center(
