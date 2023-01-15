@@ -21,7 +21,7 @@ flutter run
 
 ## 🔗 API Information
 
-API Used: Google Maps Api, Firebase Api
+API Used: Firebase Api
 
 ## 🧑 Author
 
